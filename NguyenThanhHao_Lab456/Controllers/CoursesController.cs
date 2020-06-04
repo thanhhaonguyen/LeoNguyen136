@@ -17,8 +17,6 @@ namespace NguyenThanhHao_Lab456.Controllers
             _dbContext = new ApplicationDbContext();
         }
         // GET: Courses
-        [Authorize]
-        [HttpPost]
         public ActionResult Create()
         {
             var viewModel = new CourseViewModel
@@ -27,6 +25,9 @@ namespace NguyenThanhHao_Lab456.Controllers
             };
             return View(viewModel);
         }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CourseViewModel viewModel)
         {
             if (!ModelState.IsValid)
