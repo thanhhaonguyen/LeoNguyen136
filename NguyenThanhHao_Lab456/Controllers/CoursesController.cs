@@ -16,6 +16,7 @@ namespace NguyenThanhHao_Lab456.Controllers
         {
             _dbContext = new ApplicationDbContext();
         }
+        [Authorize]
         // GET: Courses
         public ActionResult Create()
         {
