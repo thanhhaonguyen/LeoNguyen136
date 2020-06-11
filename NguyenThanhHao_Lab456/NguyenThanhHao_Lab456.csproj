@@ -243,6 +243,10 @@
     <Compile Include="Migrations\202006110839259_AddFollowingsTable.Designer.cs">
       <DependentUpon>202006110839259_AddFollowingsTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006110921286_AiBiet.cs" />
+    <Compile Include="Migrations\202006110921286_AiBiet.Designer.cs">
+      <DependentUpon>202006110921286_AiBiet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -346,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006110839259_AddFollowingsTable.resx">
       <DependentUpon>202006110839259_AddFollowingsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006110921286_AiBiet.resx">
+      <DependentUpon>202006110921286_AiBiet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
