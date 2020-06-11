@@ -29,7 +29,7 @@
                     <div class="category">
                         @course.Category.Name
                     </div>
-                    <button data-course-id="@course.Id" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                    <button data-course-id="@course.Id" id="btnAttend" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
                 </div>
             </li>
         }
@@ -48,10 +48,19 @@
                                 .text("Going");
                         })
                         .fail(function () {
-                            alert("Something failed!");
+                            alert('Some failed!');
                         });
                 });
             });
+            //var checkAttend = function () {
+            //    var courseId = document.getElementById('btnAttend').getAttribute('data-course-id');
+            //    if (courseId.trim() != '') {
+            //        document.getElementById('btnAttend').disabled = true;
+            //        document.getElementById('btnAttend').setAttribute('class', 'btn-info');
+            //        document.getElementById('btnAttend').innerHTML = 'Going';
+            //    }
+            //}
+            //checkAttend();
         </script>
     }
     @*<div class="col-md-4">
