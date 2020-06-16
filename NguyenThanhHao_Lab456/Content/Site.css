@@ -35,10 +35,14 @@ textarea {
 
 .course {
     list-style: none;
+    margin-top: 20px;
 }
 .course > li {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 55px;
+}
+.course > li button {
+    margin-right: 15px;
 }
 .course > li .date {
     text-align: center;
@@ -55,6 +59,12 @@ textarea {
 .course .details .lecturer, .category {
     display: inline;
 }
-.course .details .category {
+/*.course .details .category {
     padding-left: 5px;
+}*/
+.month, .day {
+    display: inline;
+}
+.date {
+    padding: 6px 0 6px 0;
 }
