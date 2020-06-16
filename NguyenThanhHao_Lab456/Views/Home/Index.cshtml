@@ -17,8 +17,10 @@
     <ul class="course">
         @foreach (var course in Model.UpcommingCourses)
         {
-            <li class="row">
-                <div class="date col-md-4">
+        <li class="row">
+            @if (Model.ShowAction)
+            {
+                <div class="date col-md-3">
                     <div class="day">
                         @course.DateTime.ToString("dd") /
                     </div>
@@ -26,8 +28,8 @@
                         @course.DateTime.ToString("MM")
                     </div>
                 </div>
-                <div class="details col-md-8">
-                    <div class="lecturer col-md-6">
+                <div class="details col-md-9">
+                    <div class="lecturer col-md-5">
                         <span class="text-primary">Lecturer:</span> @course.Lecturer.Name
                         @if (Model.ShowAction)
                         {
@@ -52,11 +54,11 @@
 
                         }
                     </div>
-                    <div class="category col-md-6">
-                        <div class="col-md-6">
+                    <div class="category col-md-7">
+                        <div class="col-md-5">
                             <span class="text-primary">Course:</span> @course.Category.Name
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             @if (Model.ShowAction)
                             {
                                 var userId = User.Identity.GetUserId();
@@ -74,8 +76,28 @@
                         </div>
                     </div>
                 </div>
-            </li>
-            <hr />
+            }
+            else
+            {
+                <div class="date col-md-4">
+                    <div class="day">
+                        @course.DateTime.ToString("dd") /
+                    </div>
+                    <div class="month">
+                        @course.DateTime.ToString("MM")
+                    </div>
+                </div>
+                <div class="details col-md-8">
+                    <div class="lecturer col-md-4">
+                        <span class="text-primary">Lecturer:</span> @course.Lecturer.Name
+                    </div>
+                    <div class="category col-md-8">
+                        <span class="text-primary">Course:</span> @course.Category.Name
+                    </div>
+                </div>
+            }
+        </li>
+        <hr />
         }
     </ul>
     @section scripts
