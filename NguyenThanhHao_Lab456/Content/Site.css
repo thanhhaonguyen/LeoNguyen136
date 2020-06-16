@@ -68,9 +68,15 @@ textarea {
 .date {
     padding: 6px 0 6px 0;
 }
-/*.category {
-    margin-left: 40px;
+.category {
+    padding-left: 0;
 }
 .lecturer {
-    margin-left: 20px;
-}*/
+    padding-right: 0;
+}
+.category__course {
+    padding: 0;
+}
+.category__courseName {
+    padding-right: 0;
+}

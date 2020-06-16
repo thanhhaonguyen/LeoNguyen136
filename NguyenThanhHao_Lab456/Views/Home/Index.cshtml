@@ -55,10 +55,10 @@
                         }
                     </div>
                     <div class="category col-md-7">
-                        <div class="col-md-5">
+                        <div class="col-md-5 category__courseName">
                             <span class="text-primary">Course:</span> @course.Category.Name
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 category__course">
                             @if (Model.ShowAction)
                             {
                                 var userId = User.Identity.GetUserId();

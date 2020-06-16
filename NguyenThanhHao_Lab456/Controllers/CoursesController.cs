@@ -65,5 +65,21 @@ namespace NguyenThanhHao_Lab456.Controllers
             };
             return View(viewModel);
         }
+        [Authorize]
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+            var following = _dbContext.Courses
+                .Where(a => a.LecturerId != userId)
+                .Include(l => l.Lecturer)
+                .Include(l => l.Category)
+                .ToList();
+            var viewModel = new CoursesViewModel
+            {
+                UpcommingCourses = following,
+                ShowAction = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
+        }
     }
 }
