@@ -39,7 +39,7 @@ textarea {
 }
 .course > li {
     position: relative;
-    margin-bottom: 25px;
+    /*margin-bottom: 25px;*/
 }
 .course > li button {
     margin-right: 15px;
@@ -56,9 +56,9 @@ textarea {
     top: 0;
     left: 70px;
 }
-.course .details .lecturer, .category {
+/*.course .details .lecturer, .category {
     display: inline;
-}
+}*/
 /*.course .details .category {
     padding-left: 5px;
 }*/
@@ -68,9 +68,9 @@ textarea {
 .date {
     padding: 6px 0 6px 0;
 }
-.category {
+/*.category {
     margin-left: 40px;
 }
 .lecturer {
     margin-left: 20px;
-}
+}*/

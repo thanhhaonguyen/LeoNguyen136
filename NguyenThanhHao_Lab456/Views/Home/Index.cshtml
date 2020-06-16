@@ -1,4 +1,5 @@
-﻿@model IEnumerable<NguyenThanhHao_Lab456.Models.Course>
+﻿@*@model IEnumerable<NguyenThanhHao_Lab456.Models.Course>*@
+@model NguyenThanhHao_Lab456.ViewModels.CoursesViewModel
 @using Microsoft.AspNet.Identity;
 @using NguyenThanhHao_Lab456.DTOs;
 @using NguyenThanhHao_Lab456.Models;
@@ -12,12 +13,12 @@
         <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
     </div>*@
 
-<div class="row">
+<div class="container">
     <ul class="course">
-        @foreach (var course in Model)
+        @foreach (var course in Model.UpcommingCourses)
         {
-            <li>
-                <div class="date">
+            <li class="row">
+                <div class="date col-md-4">
                     <div class="day">
                         @course.DateTime.ToString("dd") /
                     </div>
@@ -25,10 +26,10 @@
                         @course.DateTime.ToString("MM")
                     </div>
                 </div>
-                <div class="details">
-                    <div class="lecturer">
+                <div class="details col-md-8">
+                    <div class="lecturer col-md-6">
                         <span class="text-primary">Lecturer:</span> @course.Lecturer.Name
-                        @if (true)
+                        @if (Model.ShowAction)
                         {
                             var userId = User.Identity.GetUserId();
                             ApplicationDbContext _dbContext = new ApplicationDbContext();
@@ -41,7 +42,7 @@
                                 }
                                 else
                                 {
-                                    <button class="btn btn-info btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Following</button>
+                                    <button class="btn btn-success btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Following</button>
                                 }
                             }
                             else
@@ -50,27 +51,31 @@
                             }
 
                         }
-                    </div>  
-                    <div class="category">
-                        <span class="text-primary">Course:</span> @course.Category.Name
-                        @if (true)
-                        {
-                            var userId = User.Identity.GetUserId();
-                            ApplicationDbContext _dbContext = new ApplicationDbContext();
-                            bool isGoing = _dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == course.Id);
-                            if (!isGoing)
+                    </div>
+                    <div class="category col-md-6">
+                        <div class="col-md-6">
+                            <span class="text-primary">Course:</span> @course.Category.Name
+                        </div>
+                        <div class="col-md-6">
+                            @if (Model.ShowAction)
                             {
-                                <button data-course-id="@course.Id" id="btnAttend" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                                var userId = User.Identity.GetUserId();
+                                ApplicationDbContext _dbContext = new ApplicationDbContext();
+                                bool isGoing = _dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == course.Id);
+                                if (!isGoing)
+                                {
+                                    <button data-course-id="@course.Id" id="btnAttend" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
+                                }
+                                else
+                                {
+                                    <button data-course-id="@course.Id" id="btnAttend" class="btn btn-success btn-sm js-toggle-attendance">Going</button>
+                                }
                             }
-                            else
-                            {
-                                <button data-course-id="@course.Id" id="btnAttend" class="btn btn-info btn-sm js-toggle-attendance">Going</button>
-                            }
-                        }
+                        </div>
                     </div>
                 </div>
             </li>
-            <hr/>
+            <hr />
         }
     </ul>
     @section scripts
@@ -83,7 +88,7 @@
                         .done(function () {
                             button
                                 .removeClass("btn-default")
-                                .addClass("btn-info")
+                                .addClass("btn-success")
                                 .text("Going");
                         })
                         .fail(function () {
@@ -96,7 +101,7 @@
                         .done(function () {
                             button
                                 .removeClass("btn-default")
-                                .addClass("btn-info")
+                                .addClass("btn-success")
                                 .text("Following");
                             location.reload();
                         })
@@ -105,15 +110,15 @@
                         });
                 });
             });
-                    //var checkAttend = function () {
-                    //    var courseId = document.getElementById('btnAttend').getAttribute('data-course-id');
-                    //    if (courseId.trim() != '') {
-                    //        document.getElementById('btnAttend').disabled = true;
-                    //        document.getElementById('btnAttend').setAttribute('class', 'btn-info');
-                    //        document.getElementById('btnAttend').innerHTML = 'Going';
-                    //    }
-                    //}
-                    //checkAttend();
+                            //var checkAttend = function () {
+                            //    var courseId = document.getElementById('btnAttend').getAttribute('data-course-id');
+                            //    if (courseId.trim() != '') {
+                            //        document.getElementById('btnAttend').disabled = true;
+                            //        document.getElementById('btnAttend').setAttribute('class', 'btn-info');
+                            //        document.getElementById('btnAttend').innerHTML = 'Going';
+                            //    }
+                            //}
+                            //checkAttend();
         </script>
     }
     @*<div class="col-md-4">
