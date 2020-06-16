@@ -28,33 +28,37 @@
                 <div class="details">
                     <div class="lecturer">
                         <span class="text-primary">Lecturer:</span> @course.Lecturer.Name
-                    </div>
-                    @if (true)
-                    {
-                        var userId = User.Identity.GetUserId();
-                        ApplicationDbContext _dbContext = new ApplicationDbContext();
-                        bool isGoing = _dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == course.LecturerId);
-                        <span>
-                            @if (!isGoing)
+                        @if (true)
+                        {
+                            var userId = User.Identity.GetUserId();
+                            ApplicationDbContext _dbContext = new ApplicationDbContext();
+                            bool isFollowing = _dbContext.Followings.Any(f => f.FollowerId == userId && f.FolloweeId == course.LecturerId);
+                            if (!(userId == course.LecturerId))
                             {
-                                <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
+                                if (!isFollowing)
+                                {
+                                    <button class="btn btn-default btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Follow</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-info btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Following</button>
+                                }
                             }
                             else
                             {
-                                <button class="btn btn-info btn-sm js-toggle-follow" data-user-id="@course.LecturerId">Following</button>
+                                <span class="text-danger">(User-Admin)</span>
                             }
-                        </span>
-                    }
+
+                        }
+                    </div>  
                     <div class="category">
                         <span class="text-primary">Course:</span> @course.Category.Name
-                    </div>
-                    @if (true)
-                    {
-                        var userId = User.Identity.GetUserId();
-                        ApplicationDbContext _dbContext = new ApplicationDbContext();
-                        bool isGoing = _dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == course.Id);
-                        <span>
-                            @if (!isGoing)
+                        @if (true)
+                        {
+                            var userId = User.Identity.GetUserId();
+                            ApplicationDbContext _dbContext = new ApplicationDbContext();
+                            bool isGoing = _dbContext.Attendances.Any(a => a.AttendeeId == userId && a.CourseId == course.Id);
+                            if (!isGoing)
                             {
                                 <button data-course-id="@course.Id" id="btnAttend" class="btn btn-default btn-sm js-toggle-attendance">Going?</button>
                             }
@@ -62,10 +66,11 @@
                             {
                                 <button data-course-id="@course.Id" id="btnAttend" class="btn btn-info btn-sm js-toggle-attendance">Going</button>
                             }
-                        </span>
-                    }
+                        }
+                    </div>
                 </div>
             </li>
+            <hr/>
         }
     </ul>
     @section scripts
@@ -89,10 +94,14 @@
                     var button = $(e.target);
                     $.post("/api/followings", { followeeId: button.attr("data-user-id") })
                         .done(function () {
-                            button.text("Following");
+                            button
+                                .removeClass("btn-default")
+                                .addClass("btn-info")
+                                .text("Following");
+                            location.reload();
                         })
                         .fail(function () {
-                            alert('Something failed!');
+                            alert('Lecturer had been following!');
                         });
                 });
             });

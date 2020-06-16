@@ -39,7 +39,7 @@ textarea {
 }
 .course > li {
     position: relative;
-    margin-bottom: 55px;
+    margin-bottom: 25px;
 }
 .course > li button {
     margin-right: 15px;
@@ -67,4 +67,10 @@ textarea {
 }
 .date {
     padding: 6px 0 6px 0;
+}
+.category {
+    margin-left: 40px;
+}
+.lecturer {
+    margin-left: 20px;
 }
