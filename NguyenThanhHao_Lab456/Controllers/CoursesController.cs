@@ -46,7 +46,7 @@ namespace NguyenThanhHao_Lab456.Controllers
             };
             _dbContext.Courses.Add(course);
             _dbContext.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Mine", "Courses");
         }
         [Authorize]
         public ActionResult Attending()
@@ -80,6 +80,17 @@ namespace NguyenThanhHao_Lab456.Controllers
                 ShowAction = User.Identity.IsAuthenticated
             };
             return View(viewModel);
+        }
+        [Authorize]
+        public ActionResult Mine()
+        {
+            var userId = User.Identity.GetUserId();
+            var courses = _dbContext.Courses
+                .Where(a => a.LecturerId == userId && a.DateTime > DateTime.Now)
+                .Include(l => l.Lecturer)
+                .Include(l => l.Category)
+                .ToList();
+            return View(courses);
         }
     }
 }
