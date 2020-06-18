@@ -28,7 +28,14 @@
             </div>
             <div class="action col-md-4">
                 <button class="btn btn-primary"><a href="@Url.Action("Edit", "Courses", new { id = course.Id })">Edit</a></button>
-                <button class="btn btn-danger"><a href="#" class="js-cancel-course" data-course-id="@course.Id">Cancel</a></button>
+                @if (course.IsCanceled == false)
+                {
+                    <button class="btn btn-danger"><a href="#" class="js-cancel-course" data-course-id="@course.Id">Cancel</a></button>
+                }
+                else
+                {
+                    <button class="btn btn-danger" disabled><a href="#">Uncancel</a></button>
+                }
             </div>
         </li>
         <hr />
