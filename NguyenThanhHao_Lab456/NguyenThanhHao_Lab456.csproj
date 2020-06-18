@@ -210,6 +210,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CoursesController.cs" />
     <Compile Include="Controllers\AttendancesController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\FollowingsController.cs" />
@@ -247,6 +248,10 @@
     <Compile Include="Migrations\202006110921286_AiBiet.cs" />
     <Compile Include="Migrations\202006110921286_AiBiet.Designer.cs">
       <DependentUpon>202006110921286_AiBiet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006180654200_AddIsCanceledColumnToCourse.cs" />
+    <Compile Include="Migrations\202006180654200_AddIsCanceledColumnToCourse.Designer.cs">
+      <DependentUpon>202006180654200_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -358,6 +363,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006110921286_AiBiet.resx">
       <DependentUpon>202006110921286_AiBiet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006180654200_AddIsCanceledColumnToCourse.resx">
+      <DependentUpon>202006180654200_AddIsCanceledColumnToCourse.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
