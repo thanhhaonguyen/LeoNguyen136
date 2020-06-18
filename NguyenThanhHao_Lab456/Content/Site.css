@@ -51,11 +51,11 @@ textarea {
     width: 60px;
     border-radius: 8px;
 }
-.course > li .details {
+/*.course > li .details {
     position: absolute;
     top: 0;
     left: 70px;
-}
+}*/
 /*.course .details .lecturer, .category {
     display: inline;
 }*/
@@ -82,4 +82,8 @@ textarea {
 }
 .lecturer_following {
     padding-left: 0;
+}
+.action button a {
+    text-decoration: none;
+    color: white;
 }

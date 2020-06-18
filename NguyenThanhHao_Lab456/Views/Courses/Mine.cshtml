@@ -8,7 +8,7 @@
     @foreach (var course in Model)
     {
         <li class="row">
-            <div class="date col-md-5">
+            <div class="date col-md-3">
                 <div class="day">
                     @course.DateTime.ToString("dd") /
                 </div>
@@ -16,15 +16,19 @@
                     @course.DateTime.ToString("MM")
                 </div>
             </div>
-            <div class="details col-md-7">
-                <div class="lecturer col-md-4">
+            <div class="details col-md-5">
+                <div class="lecturer col-md-5">
                     <span class="text-primary">Lecturer:</span> @course.Lecturer.Name 
                 </div>
-                <div class="category col-md-8">
+                <div class="category col-md-7">
                     <div class="category__courseName">
                         <span class="text-primary">Course:</span> @course.Category.Name
                     </div>
                 </div>
+            </div>
+            <div class="action col-md-4">
+                <button class="btn btn-primary"><a href="@Url.Action("Edit", "Courses", new { id = course.Id })">Edit</a></button>
+                <button class="btn btn-danger"><a href="#">Delete</a></button>
             </div>
         </li>
         <hr />
