@@ -8,6 +8,7 @@ namespace NguyenThanhHao_Lab456.ViewModels
 {
     public class CoursesViewModel
     {
+        public IEnumerable<Following> Followings { get; set; }
         public IEnumerable<Course> UpcommingCourses { get; set; }
         public bool ShowAction { get; set; }
     }

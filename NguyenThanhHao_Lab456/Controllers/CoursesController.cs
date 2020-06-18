@@ -70,16 +70,17 @@ namespace NguyenThanhHao_Lab456.Controllers
         public ActionResult Following()
         {
             var userId = User.Identity.GetUserId();
-            var following = _dbContext.Courses
-                .Where(a => a.LecturerId != userId)
-                .Include(l => l.Lecturer)
-                .Include(l => l.Category)
+            var followings = _dbContext.Followings
+                .Where(a => a.FollowerId == userId)
+                .Select(a => a.Followee)
                 .ToList();
-            var viewModel = new CoursesViewModel
+
+            var viewModel = new FollowingViewModel
             {
-                UpcommingCourses = following,
+                Followings = followings,
                 ShowAction = User.Identity.IsAuthenticated
             };
+
             return View(viewModel);
         }
         [Authorize]
